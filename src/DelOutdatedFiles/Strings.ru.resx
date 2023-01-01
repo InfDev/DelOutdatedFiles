@@ -138,4 +138,7 @@
   <data name="InvalidDirectory" xml:space="preserve">
     <value>Неверный каталог: {0}</value>
   </data>
+  <data name="NotifyOk_InitCommand" xml:space="preserve">
+    <value>Проверьте и, при необходимости, измените файл '.DelOutdatedFiles' в каталоге: {0}</value>
+  </data>
 </root>

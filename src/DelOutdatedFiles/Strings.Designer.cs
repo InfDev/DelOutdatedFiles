@@ -122,5 +122,14 @@ namespace DelOutdatedFiles {
                 return ResourceManager.GetString("InvalidDirectory", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Check and, if necessary, change the &apos;.DelOutdatedFiles&apos; file in the directory: {0} .
+        /// </summary>
+        internal static string NotifyOk_InitCommand {
+            get {
+                return ResourceManager.GetString("NotifyOk_InitCommand", resourceCulture);
+            }
+        }
     }
 }
