@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "DelOutdatedFiles(init)": {
+      "commandName": "Project",
+      "commandLineArgs": "init -d f:\\Presa.Obmen\\!REPO_ROOT\\APP.BCP\\PlanNapr -kd 3 -kc 2"
+    }
+  }
+}
