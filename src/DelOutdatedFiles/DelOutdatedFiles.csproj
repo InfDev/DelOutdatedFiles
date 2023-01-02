@@ -7,6 +7,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>deloutdatedfiles</ToolCommandName>
+		<PackageOutputPath>./../../nupkg</PackageOutputPath>		
+	</PropertyGroup>
+	<PropertyGroup>
+		<Product>DelOutdatedFiles</Product>
+		<PackageId>deloutdatedfiles</PackageId>
+		<Title>DelOutdatedFiles .NET tool</Title>
+		<Description>Deleting outdated archive files</Description>
+		<PackageProjectUrl>https://github.com/InfDev/DelOutdatedFiles</PackageProjectUrl>
+	</PropertyGroup>
+	
   <ItemGroup>
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
   </ItemGroup>

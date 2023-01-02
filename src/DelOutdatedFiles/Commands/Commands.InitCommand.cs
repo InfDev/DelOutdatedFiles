@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.CommandLine;
-using System.CommandLine.Invocation;
-using System.CommandLine.Parsing;
+﻿using System.CommandLine;
 using DelOutdatedFiles.Handlers;
 
 namespace DelOutdatedFiles.Commands
@@ -17,13 +10,13 @@ namespace DelOutdatedFiles.Commands
         {
             var command = new Command("init", Strings.HelpDescription_Command_Init)
                 {
-                    DirectoryPathOption, KeepDaysOption, KeepCountOption, TimestampLengthOption
+                    InitDirectoryPathOption, KeepDaysOption, KeepCountOption, TimestampLengthOption
                 };
 
             command.SetHandler(async context =>
             {
                 context.ExitCode = await InitCommandHandler.Invoke(
-                    context.ParseResult.GetValueForOption<string?>(DirectoryPathOption),
+                    context.ParseResult.GetValueForOption<string?>(InitDirectoryPathOption),
                     context.ParseResult.GetValueForOption<int>(KeepDaysOption),
                     context.ParseResult.GetValueForOption<int>(KeepCountOption),
                     context.ParseResult.GetValueForOption<int>(TimestampLengthOption));
@@ -32,11 +25,11 @@ namespace DelOutdatedFiles.Commands
             return command;
         }
 
-        private static Option<string?> DirectoryPathOption =
+        private static Option<string?> InitDirectoryPathOption =
             new Option<string?>(
                 aliases: new[] { "-d", "--directory" },
                 getDefaultValue: () => Directory.GetCurrentDirectory(),
-                description: Strings.HelpDescription_Option_DirectoryPath
+                description: Strings.HelpDescription_Option_InitDirectoryPath
             )
             {
                 ArgumentHelpName = "directory"

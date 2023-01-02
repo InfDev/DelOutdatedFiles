@@ -117,13 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfigurationFileAlreadyExists" xml:space="preserve">
+  <data name="ConfigurationFile_AlreadyExists" xml:space="preserve">
     <value>Configuration file already exists: {0}</value>
+  </data>
+  <data name="ConfigurationFile_NotExists" xml:space="preserve">
+    <value>Configuration file not exists: {0}</value>
+  </data>
+  <data name="DeletedFiles" xml:space="preserve">
+    <value>Deleted files in a directory: {0}</value>
+  </data>
+  <data name="HelpDescription_Command_Cleaning" xml:space="preserve">
+    <value>Deleting obsolete archive files</value>
   </data>
   <data name="HelpDescription_Command_Init" xml:space="preserve">
     <value>Create a configuration file '.DelOutdatedFiles' with deletion rules in the specified directory</value>
   </data>
-  <data name="HelpDescription_Option_DirectoryPath" xml:space="preserve">
+  <data name="HelpDescription_Option_CleaningDirectoryPath" xml:space="preserve">
+    <value>Path to the directory where deletion will be performed according to ".DelOutdatedFiles". Default in current directory</value>
+  </data>
+  <data name="HelpDescription_Option_InitDirectoryPath" xml:space="preserve">
     <value>Path to the directory where the configuration file '.DelOutdatedFiles' will be created. Default in current directory</value>
   </data>
   <data name="HelpDescription_Option_KeepCount" xml:space="preserve">
@@ -138,7 +150,16 @@
   <data name="InvalidDirectory" xml:space="preserve">
     <value>Invalid directory: {0}</value>
   </data>
+  <data name="NoOutdatedFiles" xml:space="preserve">
+    <value>No outdated files found: {0}</value>
+  </data>
   <data name="NotifyOk_InitCommand" xml:space="preserve">
     <value>Check and, if necessary, change the '.DelOutdatedFiles' file in the directory: {0} </value>
+  </data>
+  <data name="СonfigurationFile_ErrorReading" xml:space="preserve">
+    <value>Error reading configuration file: {0}. {1}</value>
+  </data>
+  <data name="СonfigurationFile_InvalidFormat" xml:space="preserve">
+    <value>Invalid configuration file format: {0}. {1}</value>
   </data>
 </root>

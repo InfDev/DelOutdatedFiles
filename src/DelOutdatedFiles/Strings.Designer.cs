@@ -63,9 +63,36 @@ namespace DelOutdatedFiles {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Configuration file already exists: {0}.
         /// </summary>
-        internal static string ConfigurationFileAlreadyExists {
+        internal static string ConfigurationFile_AlreadyExists {
             get {
-                return ResourceManager.GetString("ConfigurationFileAlreadyExists", resourceCulture);
+                return ResourceManager.GetString("ConfigurationFile_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Configuration file not exists: {0}.
+        /// </summary>
+        internal static string ConfigurationFile_NotExists {
+            get {
+                return ResourceManager.GetString("ConfigurationFile_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Deleted files in a directory: {0}.
+        /// </summary>
+        internal static string DeletedFiles {
+            get {
+                return ResourceManager.GetString("DeletedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Deleting obsolete archive files.
+        /// </summary>
+        internal static string HelpDescription_Command_Cleaning {
+            get {
+                return ResourceManager.GetString("HelpDescription_Command_Cleaning", resourceCulture);
             }
         }
         
@@ -79,11 +106,20 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Path to the directory where deletion will be performed according to &quot;.DelOutdatedFiles&quot;. Default in current directory.
+        /// </summary>
+        internal static string HelpDescription_Option_CleaningDirectoryPath {
+            get {
+                return ResourceManager.GetString("HelpDescription_Option_CleaningDirectoryPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Path to the directory where the configuration file &apos;.DelOutdatedFiles&apos; will be created. Default in current directory.
         /// </summary>
-        internal static string HelpDescription_Option_DirectoryPath {
+        internal static string HelpDescription_Option_InitDirectoryPath {
             get {
-                return ResourceManager.GetString("HelpDescription_Option_DirectoryPath", resourceCulture);
+                return ResourceManager.GetString("HelpDescription_Option_InitDirectoryPath", resourceCulture);
             }
         }
         
@@ -124,11 +160,38 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на No outdated files found: {0}.
+        /// </summary>
+        internal static string NoOutdatedFiles {
+            get {
+                return ResourceManager.GetString("NoOutdatedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Check and, if necessary, change the &apos;.DelOutdatedFiles&apos; file in the directory: {0} .
         /// </summary>
         internal static string NotifyOk_InitCommand {
             get {
                 return ResourceManager.GetString("NotifyOk_InitCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Error reading configuration file: {0}. {1}.
+        /// </summary>
+        internal static string СonfigurationFile_ErrorReading {
+            get {
+                return ResourceManager.GetString("СonfigurationFile_ErrorReading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Invalid configuration file format: {0}. {1}.
+        /// </summary>
+        internal static string СonfigurationFile_InvalidFormat {
+            get {
+                return ResourceManager.GetString("СonfigurationFile_InvalidFormat", resourceCulture);
             }
         }
     }

@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfigurationFileAlreadyExists" xml:space="preserve">
+  <data name="ConfigurationFile_AlreadyExists" xml:space="preserve">
     <value>Файл конфигурации уже существует: {0}</value>
   </data>
+  <data name="ConfigurationFile_NotExists" xml:space="preserve">
+    <value>Файл конфигурации не обнаружен: {0}</value>
+  </data>
+  <data name="DeletedFiles" xml:space="preserve">
+    <value>Удалены файлы в каталоге: {0}</value>
+  </data>
+  <data name="HelpDescription_Command_Cleaning" xml:space="preserve">
+    <value>Удаление устаревших архивных файлов</value>
+  </data>
   <data name="HelpDescription_Command_Init" xml:space="preserve">
-    <value>Создание файла конфигурации '.DelOutdatedFiles' с правилами  удаления в указанном каталоге</value>
+    <value>Создание файла конфигурации '.DelOutdatedFiles' с правилами удаления в указанном каталоге</value>
+  </data>
+  <data name="HelpDescription_Option_CleaningDirectoryPath" xml:space="preserve">
+    <value>Путь к каталогу, в котором будет выполнено удаление согласно ".DelOutdatedFiles". По умолчанию в текущем каталоге</value>
   </data>
   <data name="HelpDescription_Option_DirectoryPath" xml:space="preserve">
     <value>Путь к каталогу, в котором будет создан файл конфигурации ".DelOutdatedFiles". По умолчанию в текущем каталоге</value>
@@ -138,7 +150,16 @@
   <data name="InvalidDirectory" xml:space="preserve">
     <value>Неверный каталог: {0}</value>
   </data>
+  <data name="NoOutdatedFiles" xml:space="preserve">
+    <value>Устаревших файлов не обнаружено: {0}</value>
+  </data>
   <data name="NotifyOk_InitCommand" xml:space="preserve">
     <value>Проверьте и, при необходимости, измените файл '.DelOutdatedFiles' в каталоге: {0}</value>
+  </data>
+  <data name="СonfigurationFile_ErrorReading" xml:space="preserve">
+    <value>Ошибка чтения файла конфигурации: {0}. {1}</value>
+  </data>
+  <data name="СonfigurationFile_InvalidFormat" xml:space="preserve">
+    <value>Недопустимый формат файла конфигурации: {0}. {1}</value>
   </data>
 </root>
