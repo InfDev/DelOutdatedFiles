@@ -151,7 +151,7 @@
     <value>Invalid directory: {0}</value>
   </data>
   <data name="NoOutdatedFiles" xml:space="preserve">
-    <value>No outdated files found: {0}</value>
+    <value>No outdated files found for: {0}</value>
   </data>
   <data name="NotifyOk_InitCommand" xml:space="preserve">
     <value>Check and, if necessary, change the '.DelOutdatedFiles' file in the directory: {0} </value>

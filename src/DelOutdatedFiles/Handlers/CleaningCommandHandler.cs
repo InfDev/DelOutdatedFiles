@@ -90,6 +90,7 @@ internal sealed class CleaningCommandHandler
                     Console.WriteLine(Strings.NoOutdatedFiles, path);
                 }
             }
+            Console.ForegroundColor = oldColor;
             return;
         });
     }    

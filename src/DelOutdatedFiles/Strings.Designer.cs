@@ -160,7 +160,7 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на No outdated files found: {0}.
+        ///   Ищет локализованную строку, похожую на No outdated files found for: {0}.
         /// </summary>
         internal static string NoOutdatedFiles {
             get {
