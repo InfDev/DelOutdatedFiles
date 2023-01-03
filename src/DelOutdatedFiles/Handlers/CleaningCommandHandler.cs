@@ -66,7 +66,7 @@ internal sealed class CleaningCommandHandler
                 var files = Directory.EnumerateFiles(directory, item.FileNameMask, SearchOption.TopDirectoryOnly);
                 var oldDate = DateTime.UtcNow.AddDays(-(item.KeepDays ?? rules.Defaults.KeepDays));
                 files = files.Select(x => new { Path = x, LastWriteTimeUtc = File.GetLastWriteTimeUtc(x) })
-                    .Where(x => x.LastWriteTimeUtc < oldDate)
+                    .Where(x => x.LastWriteTimeUtc <= oldDate)
                     .OrderBy(x => x.Path)
                     .ThenByDescending(x => x.LastWriteTimeUtc)
                     .Select(x => x.Path)
