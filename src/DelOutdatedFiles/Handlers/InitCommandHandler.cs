@@ -6,22 +6,17 @@ internal sealed class InitCommandHandler
 {
     public static async Task<int> Invoke(string? directory, int keepDays, int keepCount, int timestampLength)
     {
-        var oldColor = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Yellow;
         if (directory != null && !Directory.Exists(directory))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(Strings.InvalidDirectory, directory);
-            Console.ForegroundColor = oldColor;
+            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.InvalidDirectory, directory);
             return 2;
         }
         var dir = directory == null ? Directory.GetCurrentDirectory() : directory;
         var filePath = Path.Combine(dir, Consts.NormalConfigFileName);
         if (File.Exists(filePath))
         {
-            Console.WriteLine(Strings.ConfigurationFile_AlreadyExists, filePath);
-            Console.ForegroundColor = oldColor;
-            return 1;
+            Utils.ConsoleWriteLine(Consts.WarningColor, Strings.ConfigurationFile_AlreadyExists, filePath);
+            return 0;
         }
 
         var rules = new CleanupRules();
@@ -32,10 +27,7 @@ internal sealed class InitCommandHandler
         var json = rules.ToJson();
         await File.WriteAllTextAsync(filePath!, json);
 
-        Console.WriteLine(Strings.NotifyOk_InitCommand, directory);
-        Console.ForegroundColor = oldColor;
-        //Console.ReadKey();
-
+        Utils.ConsoleWriteLine(Consts.InfoColor, Strings.NotifyOk_InitCommand, directory!);
         return 0;
     }
         
@@ -58,7 +50,7 @@ internal sealed class InitCommandHandler
                 var fileMask = fileName.Substring(0, fileName.Length - timestampLength) + "*" + Path.GetExtension(file);
                 fileMasks.Add(fileMask);
             }
-            fileMasks = fileMasks.Distinct().ToList(); //GroupBy(x => x).Select(kv => kv.Key).ToList();
+            fileMasks = fileMasks.Distinct().ToList();
             foreach (var item in fileMasks)
             {
                 list.Add(new CleanupItem

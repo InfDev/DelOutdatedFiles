@@ -1,7 +1,5 @@
 ﻿using DelOutdatedFiles.Config;
-using System.Collections.Specialized;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace DelOutdatedFiles.Handlers;
 
@@ -9,21 +7,16 @@ internal sealed class CleaningCommandHandler
 {
     public static async Task<int> Invoke(string? directory)
     {
-        var oldColor = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Red;
         if (directory != null && !Directory.Exists(directory))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(Strings.InvalidDirectory, directory);
-            Console.ForegroundColor = oldColor;
+            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.InvalidDirectory, directory);
             return 2;
         }
         var dir = directory == null ? Directory.GetCurrentDirectory() : directory;
         var filePath = Path.Combine(dir, Consts.NormalConfigFileName);
         if (!File.Exists(filePath))
         {
-            Console.WriteLine(Strings.ConfigurationFile_NotExists, filePath);
-            Console.ForegroundColor = oldColor;
+            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.ConfigurationFile_NotExists, filePath);
             return 1;
         }
 
@@ -34,8 +27,7 @@ internal sealed class CleaningCommandHandler
         }
         catch(Exception ex)
         {
-            Console.WriteLine(Strings.СonfigurationFile_ErrorReading, filePath, ex.Message);
-            Console.ForegroundColor = oldColor;
+            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_ErrorReading, filePath, ex.Message);
             return 3;
         }
 
@@ -46,11 +38,9 @@ internal sealed class CleaningCommandHandler
         }
         catch (Exception ex)
         {
-            Console.WriteLine(Strings.СonfigurationFile_InvalidFormat, filePath, ex.Message);
-            Console.ForegroundColor = oldColor;
+            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_InvalidFormat, filePath, ex.Message);
             return 4;
         }
-        Console.ForegroundColor = oldColor;
         await Cleaning(directory!, rules!);
 
         return 0;
@@ -60,37 +50,43 @@ internal sealed class CleaningCommandHandler
     {
         await Task.Run(() =>
         {
-            var oldColor = Console.ForegroundColor;
             foreach (var item in rules.Items)
-            {
-                var files = Directory.EnumerateFiles(directory, item.FileNameMask, SearchOption.TopDirectoryOnly);
-                var oldDate = DateTime.UtcNow.AddDays(-(item.KeepDays ?? rules.Defaults.KeepDays));
-                files = files.Select(x => new { Path = x, LastWriteTimeUtc = File.GetLastWriteTimeUtc(x) })
-                    .Where(x => x.LastWriteTimeUtc <= oldDate)
-                    .OrderBy(x => x.Path)
-                    .ThenByDescending(x => x.LastWriteTimeUtc)
+            {                
+                var filesAll = Directory.EnumerateFiles(directory, item.FileNameMask, SearchOption.TopDirectoryOnly);
+
+                var olderSinceDate = DateTime.UtcNow.AddDays(-(item.KeepDays ?? rules.Defaults.KeepDays));
+                var outdatedFiles = filesAll.Select(x => new { Path = x, LastWriteTimeUtc = File.GetLastWriteTimeUtc(x) })
+                    .Where(x => x.LastWriteTimeUtc <= olderSinceDate)
+                    .OrderByDescending(x => x.LastWriteTimeUtc)                    
                     .Select(x => x.Path)
                     .ToList();
 
-                if (files.Count() > 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                int minKeepCount = item.KeepCount ?? rules.Defaults.KeepCount;
+                var allCount = filesAll.Count();
+                var oldCount = outdatedFiles.Count();
+                var nonOldCount = allCount - oldCount;
+                List<string>? delFiles = null;
+                if (nonOldCount >= minKeepCount)
+                    delFiles = outdatedFiles;
+                else
+                    delFiles = outdatedFiles.Skip(minKeepCount - nonOldCount).ToList();
 
-                    Console.WriteLine(Strings.DeletedFiles, directory);
-                    foreach (var file in files)
+                if (delFiles.Count() > 0)
+                {
+                    Utils.ConsoleWriteLine(Consts.WarningColor, Strings.DeletedFiles, directory);
+                    for (var i=delFiles.Count()-1; i >= 0; i--)
                     {
+                        var file = delFiles[i];
                         File.Delete(file);
-                        Console.WriteLine($"\t{Path.GetFileName(file)}");
+                        Utils.ConsoleWriteLine(Consts.WarningColor, $"\t{Path.GetFileName(file)}");
                     }
                 }
                 else
                 {
-                    Console.ForegroundColor = oldColor;
                     var path = Path.Combine(directory, item.FileNameMask);
-                    Console.WriteLine(Strings.NoOutdatedFiles, path);
+                    Utils.ConsoleWriteLine(Consts.WarningColor, Strings.NoOutdatedFiles, path);
                 }
             }
-            Console.ForegroundColor = oldColor;
             return;
         });
     }    
