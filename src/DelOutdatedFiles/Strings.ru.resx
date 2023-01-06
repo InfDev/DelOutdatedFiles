@@ -133,16 +133,16 @@
     <value>Создание файла конфигурации '.DelOutdatedFiles' с правилами удаления в указанном каталоге</value>
   </data>
   <data name="HelpDescription_Option_CleaningDirectoryPath" xml:space="preserve">
-    <value>Путь к каталогу, в котором будет выполнено удаление согласно ".DelOutdatedFiles". По умолчанию в текущем каталоге</value>
+    <value>Путь к каталогу, в котором будет выполнено удаление согласно ".DelOutdatedFiles". По умолчанию в текущем каталоге. Можно указать несколько папок через запятую.</value>
   </data>
   <data name="HelpDescription_Option_DirectoryPath" xml:space="preserve">
     <value>Путь к каталогу, в котором будет создан файл конфигурации ".DelOutdatedFiles". По умолчанию в текущем каталоге</value>
   </data>
   <data name="HelpDescription_Option_KeepCount" xml:space="preserve">
-    <value>Хранить минимальное количество файлов</value>
+    <value>Хранить минимальное количество файлов (&gt;=1).</value>
   </data>
   <data name="HelpDescription_Option_KeepDays" xml:space="preserve">
-    <value>Хранить файлы за последнее количество дней</value>
+    <value>Хранить файлы за последнее количество дней (&gt;=1).</value>
   </data>
   <data name="HelpDescription_Option_TimestampLength" xml:space="preserve">
     <value>Длина метки времени архивов. Будут добавлены маски для присутствующих файлов, где указанное число символов до расширения будет заменено на *</value>

@@ -5,45 +5,55 @@ namespace DelOutdatedFiles.Handlers;
 
 internal sealed class CleaningCommandHandler
 {
-    public static async Task<int> Invoke(string? directory)
+    public static async Task<int> Invoke(string[]? directories)
     {
-        if (directory != null && !Directory.Exists(directory))
+        int exitCode = 0;
+        string[] dirs = { };
+        if (directories != null && directories.Length > 0)
+            dirs = directories[0].Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (dirs.Length == 0)
+            dirs = new string[] { Directory.GetCurrentDirectory() };
+        else
+        foreach (var directory in dirs)
         {
-            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.InvalidDirectory, directory);
-            return 2;
-        }
-        var dir = directory == null ? Directory.GetCurrentDirectory() : directory;
-        var filePath = Path.Combine(dir, Consts.NormalConfigFileName);
-        if (!File.Exists(filePath))
-        {
-            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.ConfigurationFile_NotExists, filePath);
-            return 1;
+            if (!Directory.Exists(directory))
+            {
+                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.InvalidDirectory, directory);
+                ++exitCode;
+                continue;
+            }
+            var filePath = Path.Combine(directory, Consts.NormalConfigFileName);
+            if (!File.Exists(filePath))
+            {
+                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.ConfigurationFile_NotExists, filePath);
+                ++exitCode;
+                continue;
+            }
+            string json = string.Empty;
+            try
+            {
+                json = File.ReadAllText(filePath);
+            }
+            catch (Exception ex)
+            {
+                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_ErrorReading, filePath, ex.Message);
+                ++exitCode;
+            }
+
+            CleanupRules? rules = null;
+            try
+            {
+                rules = JsonSerializer.Deserialize<CleanupRules>(json);
+            }
+            catch (Exception ex)
+            {
+                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_InvalidFormat, filePath, ex.Message);
+                ++exitCode;
+            }
+            await Cleaning(directory!, rules!);
         }
 
-        string json = string.Empty;
-        try
-        {
-            json = File.ReadAllText(filePath);
-        }
-        catch(Exception ex)
-        {
-            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_ErrorReading, filePath, ex.Message);
-            return 3;
-        }
-
-        CleanupRules? rules = null;
-        try
-        {
-            rules = JsonSerializer.Deserialize<CleanupRules>(json);
-        }
-        catch (Exception ex)
-        {
-            Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_InvalidFormat, filePath, ex.Message);
-            return 4;
-        }
-        await Cleaning(directory!, rules!);
-
-        return 0;
+        return exitCode;
     }
 
     static async Task Cleaning(string directory, CleanupRules rules)
@@ -84,7 +94,7 @@ internal sealed class CleaningCommandHandler
                 else
                 {
                     var path = Path.Combine(directory, item.FileNameMask);
-                    Utils.ConsoleWriteLine(Consts.WarningColor, Strings.NoOutdatedFiles, path);
+                    Utils.ConsoleWriteLine(Consts.InfoColor, Strings.NoOutdatedFiles, path);
                 }
             }
             return;

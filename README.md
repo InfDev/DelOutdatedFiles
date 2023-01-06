@@ -29,10 +29,9 @@ Usage:
 
 Options:
   -d, --directory <directory>                 Path to the directory where the configuration file '.DelOutdatedFiles'
-                                              will be created. Default in current directory [default:
-                                              e:\!Repos\InfDev\DelOutdatedFiles\src\DelOutdatedFiles\bin\Debug\net7.0]
-  -kd, --keep-days <keep-days>                Keep files from the last number of days. Default 40 [default: 40]
-  -kc, --keep-count <keep-count>              Keep a minimum number of files. Default 40 [default: 40]
+                                              will be created. Default in current directory
+  -kd, --keep-days <keep-days>                Keep files from the last number of days (>=1). [default: 40]
+  -kc, --keep-count <keep-count>              Keep a minimum number of files (>=1). [default: 40]
   -tl, --timestamp-length <timestamp-length>  The length of the timestamp of the archives. Masks will be added for
                                               present files, where the specified number of characters before the
                                               extension will be replaced by * [default: 13]
@@ -46,7 +45,7 @@ Usage:
 
 Options:
   -d, --directory <directory>  Path to the directory where deletion will be performed according to ".DelOutdatedFiles". 
-                               Default in current directory
+                               Default in current directory. You can specify multiple folders separated by commas.
 ```
 
 ## Install/Unistall tool

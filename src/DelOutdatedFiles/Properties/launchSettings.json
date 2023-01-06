@@ -4,13 +4,17 @@
       "commandName": "WSL2",
       "distributionName": ""
     },
-    "DelOutdatedFiles(init)": {
+    "DelOutdatedFiles | help": {
       "commandName": "Project",
-      "commandLineArgs": "init -d f:\\Presa.Obmen\\!REPO_ROOT\\APP.BCP\\PlanNapr -kd 3 -kc 2"
+      "commandLineArgs": "cleaning -h"
     },
-    "DelOutdatedFiles(cleaning)": {
+    "DelOutdatedFiles | cleaning": {
       "commandName": "Project",
-      "commandLineArgs": "cleaning -d f:\\Presa.Obmen\\!REPO_ROOT\\APP.BCP\\PlanNapr"
+      "commandLineArgs": "cleaning -d f:\\!PresaRepo\\APP.BCP\\PlanNapr,f:\\!PresaRepo\\APP.BCP\\RedPresa"
+    },
+    "DelOutdatedFiles | init": {
+      "commandName": "Project",
+      "commandLineArgs": "init -d f:\\!PresaRepo\\APP.BCP\\PlanNapr -kd 3 -kc 2"
     }
   }
 }

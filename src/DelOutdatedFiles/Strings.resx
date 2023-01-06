@@ -133,16 +133,16 @@
     <value>Create a configuration file '.DelOutdatedFiles' with deletion rules in the specified directory</value>
   </data>
   <data name="HelpDescription_Option_CleaningDirectoryPath" xml:space="preserve">
-    <value>Path to the directory where deletion will be performed according to ".DelOutdatedFiles". Default in current directory</value>
+    <value>Path to the directory where deletion will be performed according to ".DelOutdatedFiles". Default in current directory. You can specify multiple folders separated by commas.</value>
   </data>
   <data name="HelpDescription_Option_InitDirectoryPath" xml:space="preserve">
     <value>Path to the directory where the configuration file '.DelOutdatedFiles' will be created. Default in current directory</value>
   </data>
   <data name="HelpDescription_Option_KeepCount" xml:space="preserve">
-    <value>Keep a minimum number of files. Default 40</value>
+    <value>Keep a minimum number of files (&gt;=1).</value>
   </data>
   <data name="HelpDescription_Option_KeepDays" xml:space="preserve">
-    <value>Keep files from the last number of days. Default 40</value>
+    <value>Keep files from the last number of days (&gt;=1).</value>
   </data>
   <data name="HelpDescription_Option_TimestampLength" xml:space="preserve">
     <value>The length of the timestamp of the archives. Masks will be added for present files, where the specified number of characters before the extension will be replaced by *</value>

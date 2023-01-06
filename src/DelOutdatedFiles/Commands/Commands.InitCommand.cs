@@ -28,7 +28,7 @@ namespace DelOutdatedFiles.Commands
         private static Option<string?> InitDirectoryPathOption =
             new Option<string?>(
                 aliases: new[] { "-d", "--directory" },
-                getDefaultValue: () => Directory.GetCurrentDirectory(),
+                // getDefaultValue: () => Directory.GetCurrentDirectory(),
                 description: Strings.HelpDescription_Option_InitDirectoryPath
             )
             {

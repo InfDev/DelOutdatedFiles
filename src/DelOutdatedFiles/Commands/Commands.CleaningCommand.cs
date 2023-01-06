@@ -16,52 +16,22 @@ namespace DelOutdatedFiles.Commands
             command.SetHandler(async context =>
             {
                 context.ExitCode = await CleaningCommandHandler.Invoke(
-                    context.ParseResult.GetValueForOption<string?>(CleaningDirectoryPathOption));
+                    context.ParseResult.GetValueForOption<string[]?>(CleaningDirectoryPathOption));
         });
 
             return command;
         }
 
-        private static Option<string?> CleaningDirectoryPathOption =
-            new Option<string?>(
+        private static Option<string[]?> CleaningDirectoryPathOption =
+            new Option<string[]?>(
                 aliases: new[] { "-d", "--directory" },
-                getDefaultValue: () => Directory.GetCurrentDirectory(),
+                //getDefaultValue: () => Directory.GetCurrentDirectory(),
                 description: Strings.HelpDescription_Option_CleaningDirectoryPath
             )
             {
-                ArgumentHelpName = "directory"
+                ArgumentHelpName = "directory",
+                Arity = ArgumentArity.OneOrMore
             };
 
-        //private static Option<int> KeepDaysOption =
-        //    new Option<int>(
-        //        aliases: new[] { "-kd", "--keep-days" },
-        //        getDefaultValue: () => 40,
-        //        description: Strings.HelpDescription_Option_KeepDays
-        //    )
-        //    {
-        //        ArgumentHelpName = "keep-days"
-        //    };
-
-        //private static Option<int> KeepCountOption =
-        //    new Option<int>(
-        //        aliases: new[] { "-kc", "--keep-count" },
-        //        getDefaultValue: () => 40,
-        //        description: Strings.HelpDescription_Option_KeepCount
-        //    )
-        //    {
-        //        ArgumentHelpName = "keep-count"
-        //    };
-
-        //private static Option<int> TimestampLengthOption =
-        //    new Option<int>(
-        //        aliases: new[] { "-tl", "--timestamp-length" },
-        //        getDefaultValue: () => 13,
-        //        description: Strings.HelpDescription_Option_TimestampLength
-        //    )
-        //    {
-        //        ArgumentHelpName = "timestamp-length"
-        //    };
     }
-
-
 }

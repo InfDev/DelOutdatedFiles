@@ -106,7 +106,7 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Path to the directory where deletion will be performed according to &quot;.DelOutdatedFiles&quot;. Default in current directory.
+        ///   Ищет локализованную строку, похожую на Path to the directory where deletion will be performed according to &quot;.DelOutdatedFiles&quot;. Default in current directory. You can specify multiple folders separated by commas..
         /// </summary>
         internal static string HelpDescription_Option_CleaningDirectoryPath {
             get {
@@ -124,7 +124,7 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Keep a minimum number of files. Default 40.
+        ///   Ищет локализованную строку, похожую на Keep a minimum number of files (&gt;=1)..
         /// </summary>
         internal static string HelpDescription_Option_KeepCount {
             get {
@@ -133,7 +133,7 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Keep files from the last number of days. Default 40.
+        ///   Ищет локализованную строку, похожую на Keep files from the last number of days (&gt;=1)..
         /// </summary>
         internal static string HelpDescription_Option_KeepDays {
             get {
