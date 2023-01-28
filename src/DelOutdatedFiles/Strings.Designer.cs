@@ -106,7 +106,7 @@ namespace DelOutdatedFiles {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Path to the directory where deletion will be performed according to &quot;.DelOutdatedFiles&quot;. Default in current directory. You can specify multiple folders separated by commas..
+        ///   Ищет локализованную строку, похожую на Path to the directory where deletion will be performed according to &quot;.DelOutdatedFiles&quot;. Default in current directory. You can specify multiple folders separated by commas too..
         /// </summary>
         internal static string HelpDescription_Option_CleaningDirectoryPath {
             get {

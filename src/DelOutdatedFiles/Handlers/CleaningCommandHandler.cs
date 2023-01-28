@@ -7,52 +7,52 @@ internal sealed class CleaningCommandHandler
 {
     public static async Task<int> Invoke(string[]? directories)
     {
+        Utils.ConsoleWriteLine(ConsoleColor.DarkGray, "Begin cleaning...");
+
         int exitCode = 0;
-        string[] dirs = { };
-        if (directories != null && directories.Length > 0)
-            dirs = directories[0].Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-        if (dirs.Length == 0)
-            dirs = new string[] { Directory.GetCurrentDirectory() };
-        else
-        foreach (var directory in dirs)
+        string[] dirLists = directories ?? new string[] { Directory.GetCurrentDirectory() };
+        foreach (var list in dirLists)
         {
-            if (!Directory.Exists(directory))
+            string[] dirs = list.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            foreach (var directory in dirs)
             {
-                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.InvalidDirectory, directory);
-                ++exitCode;
-                continue;
-            }
-            var filePath = Path.Combine(directory, Consts.NormalConfigFileName);
-            if (!File.Exists(filePath))
-            {
-                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.ConfigurationFile_NotExists, filePath);
-                ++exitCode;
-                continue;
-            }
-            string json = string.Empty;
-            try
-            {
-                json = File.ReadAllText(filePath);
-            }
-            catch (Exception ex)
-            {
-                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_ErrorReading, filePath, ex.Message);
-                ++exitCode;
-            }
+                if (!Directory.Exists(directory))
+                {
+                    Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.InvalidDirectory, directory);
+                    ++exitCode;
+                    continue;
+                }
+                var filePath = Path.Combine(directory, Consts.NormalConfigFileName);
+                if (!File.Exists(filePath))
+                {
+                    Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.ConfigurationFile_NotExists, filePath);
+                    ++exitCode;
+                    continue;
+                }
+                string json = string.Empty;
+                try
+                {
+                    json = File.ReadAllText(filePath);
+                }
+                catch (Exception ex)
+                {
+                    Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_ErrorReading, filePath, ex.Message);
+                    ++exitCode;
+                }
 
-            CleanupRules? rules = null;
-            try
-            {
-                rules = JsonSerializer.Deserialize<CleanupRules>(json);
+                CleanupRules? rules = null;
+                try
+                {
+                    rules = JsonSerializer.Deserialize<CleanupRules>(json);
+                    await Cleaning(directory!, rules!);
+                }
+                catch (Exception ex)
+                {
+                    Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_InvalidFormat, filePath, ex.Message);
+                    ++exitCode;
+                }
             }
-            catch (Exception ex)
-            {
-                Utils.ConsoleWriteLine(Consts.ErrorColor, Strings.СonfigurationFile_InvalidFormat, filePath, ex.Message);
-                ++exitCode;
-            }
-            await Cleaning(directory!, rules!);
         }
-
         return exitCode;
     }
 

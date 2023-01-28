@@ -2,6 +2,7 @@
 using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
 using System.Globalization;
+using DelOutdatedFiles;
 using DelOutdatedFiles.Commands;
 
 // https://learn.microsoft.com/en-us/dotnet/standard/commandline/get-started-tutorial
@@ -18,4 +19,6 @@ var parser = new CommandLineBuilder(new RootCommand("Deleting outdated files")
 .UseDefaults()
 .Build();
 
+Utils.ConsoleWriteLine(ConsoleColor.DarkGray, "Starting...");
 await parser.InvokeAsync(args);
+Utils.ConsoleWriteLine(ConsoleColor.DarkGray, "Ending");

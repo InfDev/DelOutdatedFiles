@@ -45,7 +45,7 @@ Usage:
 
 Options:
   -d, --directory <directory>  Path to the directory where deletion will be performed according to ".DelOutdatedFiles". 
-                               Default in current directory. You can specify multiple folders separated by commas.
+                               Default in current directory. You can specify multiple folders separated by commas too.
 ```
 
 ## Install/Unistall tool

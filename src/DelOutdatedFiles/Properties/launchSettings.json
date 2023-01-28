@@ -10,7 +10,7 @@
     },
     "DelOutdatedFiles | cleaning": {
       "commandName": "Project",
-      "commandLineArgs": "cleaning -d f:\\!PresaRepo\\APP.BCP\\PlanNapr,f:\\!PresaRepo\\APP.BCP\\RedPresa"
+      "commandLineArgs": "cleaning -d f:\\!PresaRepo\\APP.BCP\\PlanNapr -d f:\\!PresaRepo\\APP.BCP\\RedPresa"
     },
     "DelOutdatedFiles | init": {
       "commandName": "Project",

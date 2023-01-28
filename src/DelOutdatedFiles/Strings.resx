@@ -133,7 +133,7 @@
     <value>Create a configuration file '.DelOutdatedFiles' with deletion rules in the specified directory</value>
   </data>
   <data name="HelpDescription_Option_CleaningDirectoryPath" xml:space="preserve">
-    <value>Path to the directory where deletion will be performed according to ".DelOutdatedFiles". Default in current directory. You can specify multiple folders separated by commas.</value>
+    <value>Path to the directory where deletion will be performed according to ".DelOutdatedFiles". Default in current directory. You can specify multiple folders separated by commas too.</value>
   </data>
   <data name="HelpDescription_Option_InitDirectoryPath" xml:space="preserve">
     <value>Path to the directory where the configuration file '.DelOutdatedFiles' will be created. Default in current directory</value>
